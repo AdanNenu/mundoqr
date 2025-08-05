@@ -7,6 +7,9 @@ import iconPhone from '../assets/telefono.png';
 import iconShare from '../assets/compartir.png'; 
 import iconReport from '../assets/informes.png'; 
 
+
+
+
 //CONFIGURAR SI SE LANZA ANUNCIO  
 // Variables configurables para abrir modal por defecto
 const abrirModalPorDefecto = false; // Cambia a false si no quieres abrirlo al inicio 
@@ -52,6 +55,7 @@ let iconGallery1, iconGallery2, iconGallery3, iconGallery4, iconGallery5;
 let iconPDF1, iconPDF2, iconPDF3, iconPDF4, iconPDF5, iconPDF6, iconPDF7, iconPDF8, iconPDF9, iconPDF10;
 let iconurl1, iconurl2, iconurl3, iconurl4, iconurl5, iconurl6, iconurl7, iconurl8, iconurl9, iconurl10;
 let iconMiWa, iconMiMail;
+let iconVisor, iconHome, iconAnuncio;
 
 try { iconRewind = require('../assets/preview.png'); } catch {}
 try { iconPlay = require('../assets/play.png'); } catch {}
@@ -59,6 +63,7 @@ try { iconPause = require('../assets/pause.png'); } catch {}
 try { iconForward = require('../assets/next.png'); } catch {}
 try { iconMute = require('../assets/silencio.png'); } catch {}
 try { iconVol = require('../assets/volumen.png'); } catch {}
+
 
 try { iconGmail = require('../assets/gmail.png'); } catch {}
 try { iconWhats = require('../assets/wa.png'); } catch {}
@@ -98,11 +103,17 @@ try { iconurl10 = require('../assets/url10.png'); } catch {}
 try { iconMiWa = require('../assets/miWa.png'); } catch {}
 try { iconMiMail = require('../assets/miMail.png'); } catch {}
 
+try { iconVisor = require('../assets/visor.png'); } catch {}
+try { iconHome = require('../assets/home.png'); } catch {}
+try { iconAnuncio = require('../assets/anuncio.png'); } catch {}
+
+
+
 
 
 try { iconMenu = require('../assets/menu.png'); } catch {}
 
-const Botones = ({ onPlayPause, onRewind, onForward, onToggleMute, isMuted, isPlaying }) => {
+const Botones = ({cambiarComponente, onPlayPause, onRewind, onForward, onToggleMute, isMuted, isPlaying }) => {
   const [menuAbierto, setMenuAbierto] = useState(false);
   const [modalAbierto, setModalAbierto] = useState(false);
   const [galeriaActual, setGaleriaActual] = useState("");
@@ -452,6 +463,30 @@ const Botones = ({ onPlayPause, onRewind, onForward, onToggleMute, isMuted, isPl
 	  window.history.back(); // Retrocede en el historial para eliminar la entrada del modal
 	};
 
+	//Cambiar vista
+	const cambiarVista = (e) => {
+	  try {
+		const alt = e.currentTarget.querySelector("img")?.alt?.toLowerCase();
+		if (!alt) return;
+
+		switch (alt) {
+		  case "home":
+			cambiarComponente("home");
+			break;
+		  case "visor":
+			cambiarComponente("visor");
+			break;
+		  case "anuncio":
+			cambiarComponente("anuncio");
+			break;
+		  default:
+			console.warn("Componente no reconocido:", alt);
+		}
+	  } catch (error) {
+		console.error("Error en cambiarVista:", error);
+	  }
+	};
+
 	
 
 return (
@@ -523,6 +558,13 @@ return (
             {/* Mis datos de Empresa */}
             {iconMiMail && <button onClick={abrirMiGmail}><img src={iconMiMail} alt="Gmail" /></button>}
             {/*	{iconMiWa && <button onClick={abrirMiWhatsApp}><img src={iconMiWa} alt="WhatsApp" /></button>}*/}
+            
+			{/* Visores */}
+            {iconVisor && <button onClick={cambiarVista}><img src={iconVisor} alt="visor" /></button>}
+            {iconHome && <button onClick={cambiarVista}><img src={iconHome} alt="home" /></button>}
+            {iconAnuncio && <button onClick={cambiarVista}><img src={iconAnuncio} alt="anuncio" /></button>}
+			
+			
           </>
         )}
       </div>
@@ -580,6 +622,11 @@ return (
             {/* Mis datos de Empresa */}
             {/*{iconMiMail && <button onClick={abrirMiGmail}><img src={iconMiMail} alt="Gmail" /></button>}*/}
             {/*{iconMiWa && <button onClick={abrirMiWhatsApp}><img src={iconMiWa} alt="WhatsApp" /></button>}*/}
+			
+			{/* Visores */}
+            {iconVisor && <button onClick={cambiarVista}><img src={iconVisor} alt="visor" /></button>}
+            {iconHome && <button onClick={cambiarVista}><img src={iconHome} alt="home" /></button>}
+            {iconAnuncio && <button onClick={cambiarVista}><img src={iconAnuncio} alt="anuncio" /></button>}
           </motion.div>
         )}
       </AnimatePresence>
@@ -590,7 +637,7 @@ return (
         <div className="modal-overlay" onClick={() => setModalAbierto(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div style={{
-              width: "100%", height: 0, paddingTop: esVertical ? "177.7778%" : "56.25%",
+              width: "100%", height: 0, paddingTop: esVertical ? "177.7778%" : "53.25%",
               overflow: "hidden", borderRadius: "8px", position: "relative"
             }}>
               <iframe

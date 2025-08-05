@@ -48,12 +48,6 @@ function Anuncio() {
           <img src={overlayImage} alt="acción" className="overlay-img" />
         </div>
       )}
-
-      <Botones
-        onPlayPause={handlePlayPause}
-        isMuted={isMuted}
-        isPlaying={isPlaying}
-      />
     </div>
   );
 }

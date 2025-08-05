@@ -1,17 +1,20 @@
 /* App.css */
 
 /* 1. Ajustes globales */
-html,
-body,
-#root {
+html, body, #root, .App {
+  height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
-  min-height: 100vh;    /* 👈 usa min-height, no height */
-  overflow-x: hidden;
-  overflow-y: auto;       /* 👈 habilita scroll vertical */
-  box-sizing: border-box;
-  justify-content:flex-start;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.contenido-principal {
+  flex: 1;
+  overflow-y: auto;
 }
 
 /* 2. Clase principal App */
@@ -20,7 +23,7 @@ body,
   min-height: 100vh;      /* 👈 cambia a min-height aquí también */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content:flex-start; /* 👈 cambia a flex-start si quieres scroll */
+  align-items: center;
+  justify-content:center; /* 👈 cambia a flex-start si quieres scroll */
   padding-bottom: 0;   /* 👈 agrega espacio abajo para asegurar scroll */
 }

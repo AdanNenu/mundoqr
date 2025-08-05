@@ -1,19 +1,39 @@
-// src/App.js
-import React, { useEffect } from 'react'; // 👈 Importa useEffect
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Anuncio from './components/Anuncio';
+import Botones from './components/Botones';
+import Home from './components/Home';
+import Visor from './components/Visor';
 
 function App() {
-  // 👇 Este useEffect se ejecuta una vez al cargar el componente
+  const [componenteActivo, setComponenteActivo] = useState('home');
+
   useEffect(() => {
-    window.scrollTo(0, 1); // Empujón para esconder la barra del navegadorrs
+    window.scrollTo(0, 1);
   }, []);
+
+  const renderComponente = () => {
+    switch (componenteActivo) {
+      case 'home':
+        return <Home />;
+      case 'visor':
+        return <Visor />;
+      case 'anuncio':
+        return <Anuncio />;
+      default:
+        return <Home />;
+    }
+  };
 
   return (
     <div className="App">
-      <Anuncio />
+      <div className="contenido-principal">
+        {renderComponente()}
+      </div>
+      <Botones cambiarComponente={setComponenteActivo} />
     </div>
   );
 }
+
 
 export default App;

@@ -1,0 +1,20 @@
+[
+  {
+    "modelo": "MX-200",
+    "descripcion": "Limpieza ultrasónica profesional",
+    "costo": "$1,200 MXN",
+    "imagen": "/assets/visor/ultrasonico.jpg"
+  },
+  {
+    "modelo": "ZX-100",
+    "descripcion": "Kit de blanqueamiento dental",
+    "costo": "$850 MXN",
+    "imagen": "/assets/visor/blanqueador.jpg"
+  },
+  {
+    "modelo": "SD-50",
+    "descripcion": "Set de limpieza interdental premium",
+    "costo": "$650 MXN",
+    "imagen": "/assets/visor/interdental.jpg"
+  }
+]

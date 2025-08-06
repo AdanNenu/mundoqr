@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import iconMaps from '../assets/ubicacion.png'; 
 import iconPhone from '../assets/telefono.png'; 
 import iconShare from '../assets/compartir.png'; 
-import iconReport from '../assets/informes.png'; 
+import iconReportModal from '../assets/informesModal.png'; 
+
 
 
 
@@ -27,6 +28,8 @@ let urlModalActualV = "";//para saber si se trata del anuncio, y agregar boton.
 
 //Constante
 const colapsarBotonera  = true; //Si es false, funciona con normalidad. Si es True, colapsar con la nueva logica
+const nombreNegocio = "Nombre del Negocio";//Se quema la variable del anuncio del cliente
+const version = "v2.3.3.1";//Se quema la variable del anuncio del cliente
 
 //Información del Cliente
 const telefonoWA = "+52";
@@ -54,8 +57,8 @@ let iconGmail, iconWhats, iconCalendy;
 let iconGallery1, iconGallery2, iconGallery3, iconGallery4, iconGallery5;
 let iconPDF1, iconPDF2, iconPDF3, iconPDF4, iconPDF5, iconPDF6, iconPDF7, iconPDF8, iconPDF9, iconPDF10;
 let iconurl1, iconurl2, iconurl3, iconurl4, iconurl5, iconurl6, iconurl7, iconurl8, iconurl9, iconurl10;
-let iconMiWa, iconMiMail;
-let iconVisor, iconHome, iconAnuncio;
+let iconMiWa, iconMiMail, iconReport;
+let iconVisor, iconHome, iconAnuncio, iconComida, iconBebidas, iconPostres;
 
 try { iconRewind = require('../assets/preview.png'); } catch {}
 try { iconPlay = require('../assets/play.png'); } catch {}
@@ -107,7 +110,11 @@ try { iconVisor = require('../assets/visor.png'); } catch {}
 try { iconHome = require('../assets/home.png'); } catch {}
 try { iconAnuncio = require('../assets/anuncio.png'); } catch {}
 
+try { iconComida = require('../assets/menu/comida.png'); } catch {}
+try { iconBebidas = require('../assets/menu/bebidas.png'); } catch {}
+try { iconPostres = require('../assets/menu/postres.png'); } catch {}
 
+try { iconReport = require('../assets/informes.png'); } catch {}
 
 
 
@@ -136,7 +143,26 @@ const Botones = ({cambiarComponente, onPlayPause, onRewind, onForward, onToggleM
   const fechaActual = new Date();
   const fechaInicio = new Date(fechaInicioModal);
   const fechaFin = new Date(fechaFinModal);
-  
+  const [modalInformesAbierto, setModalInformesAbierto] = useState(false);
+
+	const abrirInformesModal = () => {
+	  setModalInformesAbierto(true);
+	};
+
+	const cerrarInformesModal = () => {
+	  setModalInformesAbierto(false);
+	};
+
+	// Cierre con tecla Esc
+	useEffect(() => {
+	  const manejarEscape = (e) => {
+		if (e.key === 'Escape') cerrarInformesModal();
+	  };
+	  window.addEventListener('keydown', manejarEscape);
+	  return () => window.removeEventListener('keydown', manejarEscape);
+	}, []);
+
+
   
   const [miniModal, setMiniModal] = useState(null);
 
@@ -479,6 +505,15 @@ const Botones = ({cambiarComponente, onPlayPause, onRewind, onForward, onToggleM
 		  case "anuncio":
 			cambiarComponente("anuncio");
 			break;
+		  case "comida":
+			cambiarComponente("comida");
+			break;
+		  case "bebidas":
+			cambiarComponente("bebidas");
+			break;
+		  case "postres":
+			cambiarComponente("postres");
+			break;
 		  default:
 			console.warn("Componente no reconocido:", alt);
 		}
@@ -494,9 +529,10 @@ return (
     <div className="botones-container">
 	  {/* Reproductor */}
       <div className="reproductor">
-        {iconGallery1 && <button onClick={() => abrirGaleria(1)}><img src={iconGallery1} alt="Galería 1" /></button>}
-		{iconCalendy && <button onClick={abrirCalendy}><img src={iconCalendy} alt="Calendly" /></button>}
-        {iconMiWa && <button onClick={abrirMiWhatsApp}><img src={iconMiWa} alt="WhatsApp" /></button>}
+	  	{iconComida && <button onClick={cambiarVista}><img src={iconComida} alt="comida" /></button>}
+        {iconBebidas && <button onClick={cambiarVista}><img src={iconBebidas} alt="bebidas" /></button>}
+        {iconPostres && <button onClick={cambiarVista}><img src={iconPostres} alt="postres" /></button>}
+			
         {iconMute && iconVol && (
           <button onClick={onToggleMute}>
             <img src={isMuted ? iconMute : iconVol} alt="Silenciar/Sonar" />
@@ -563,7 +599,11 @@ return (
             {iconVisor && <button onClick={cambiarVista}><img src={iconVisor} alt="visor" /></button>}
             {iconHome && <button onClick={cambiarVista}><img src={iconHome} alt="home" /></button>}
             {iconAnuncio && <button onClick={cambiarVista}><img src={iconAnuncio} alt="anuncio" /></button>}
-			
+            {iconComida && <button onClick={cambiarVista}><img src={iconComida} alt="comida" /></button>}
+            {iconBebidas && <button onClick={cambiarVista}><img src={iconBebidas} alt="bebidas" /></button>}
+            {iconPostres && <button onClick={cambiarVista}><img src={iconPostres} alt="postres" /></button>}
+            {iconReportModal && <button onClick={abrirInformesModal}><img src={iconReportModal} alt="postres" /></button>}
+
 			
           </>
         )}
@@ -627,6 +667,7 @@ return (
             {iconVisor && <button onClick={cambiarVista}><img src={iconVisor} alt="visor" /></button>}
             {iconHome && <button onClick={cambiarVista}><img src={iconHome} alt="home" /></button>}
             {iconAnuncio && <button onClick={cambiarVista}><img src={iconAnuncio} alt="anuncio" /></button>}
+            {iconReportModal && <button onClick={abrirInformesModal}><img src={iconReportModal} alt="postres" /></button>}
           </motion.div>
         )}
       </AnimatePresence>
@@ -687,6 +728,61 @@ return (
         <button className="btn-cerrar" onClick={() => setMiniModal(null)}>Cancelar</button>
       </div>
     )}
+	
+	
+{modalInformesAbierto && (
+  <motion.div
+    className="modal-backdrop"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    onClick={cerrarInformesModal}
+  >
+    <motion.div
+      className="modal-contenido"
+      initial={{ scale: 0.9, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0.9, opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      onClick={(e) => e.stopPropagation()} // Evita cierre si clic dentro
+    >
+      <motion.div
+        className="modal-info-negocio"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+      >
+        <h2>{nombreNegocio}</h2>
+        <p>{version}</p>
+      </motion.div>
+
+      <motion.div
+        className="modal-info-dev"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.25 }}
+      >
+        <p className="dev-label">Desarrollado por:</p>
+        <h3>Postres Web</h3>
+      </motion.div>
+
+      <motion.div
+        className="modal-botones"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.4 }}
+      >
+        <button onClick={() => window.open(urlMiSitioWeb, "_blank")}>
+          Visitar Web
+        </button>
+        <button onClick={cerrarInformesModal}>Cerrar</button>
+      </motion.div>
+    </motion.div>
+  </motion.div>
+)}
+
+
+
   </>
 );
 };

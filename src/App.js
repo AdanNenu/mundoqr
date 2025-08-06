@@ -4,6 +4,11 @@ import Anuncio from './components/Anuncio';
 import Botones from './components/Botones';
 import Home from './components/Home';
 import Visor from './components/Visor';
+import Comida from './components/menu/Comida';
+import Bebidas from './components/menu/Bebidas';
+import Postres from './components/menu/Postres';
+
+
 
 function App() {
   const [componenteActivo, setComponenteActivo] = useState('home');
@@ -20,6 +25,12 @@ function App() {
         return <Visor />;
       case 'anuncio':
         return <Anuncio />;
+	  case 'comida':
+        return <Comida />;
+	  case 'bebidas':
+        return <Bebidas />;
+	  case 'postres':
+        return <Postres />;
       default:
         return <Home />;
     }

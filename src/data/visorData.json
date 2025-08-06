@@ -1,20 +1,38 @@
 [
   {
-    "modelo": "MX-200",
-    "descripcion": "Limpieza ultrasónica profesional",
-    "costo": "$1,200 MXN",
-    "imagen": "/assets/visor/ultrasonico.jpg"
+    "modelo": "Pres.",
+    "costo": "N/A",
+    "descripcion": "Bienvenidos",
+    "imagen": "/assets/visor/1.jpg"
   },
   {
-    "modelo": "ZX-100",
-    "descripcion": "Kit de blanqueamiento dental",
-    "costo": "$850 MXN",
-    "imagen": "/assets/visor/blanqueador.jpg"
+    "modelo": "Postre de Gelatina",
+    "costo": "$50.00 MXN",
+    "descripcion": "Gelatina de leche y fresa, 450 grms. Postre individual.",
+    "imagen": "/assets/visor/2.jpg"
   },
   {
-    "modelo": "SD-50",
-    "descripcion": "Set de limpieza interdental premium",
-    "costo": "$650 MXN",
-    "imagen": "/assets/visor/interdental.jpg"
+    "modelo": "Rebanada pay de queso",
+    "costo": "$45.00 MXN",
+    "descripcion": "1 Rebanada de delicioso pay de queso. 400 grms. Postre individual.",
+    "imagen": "/assets/visor/3.jpg"
+  },
+  {
+    "modelo": "Rebanada de chocolate",
+    "costo": "$40.00 MXN",
+    "descripcion": "1 Rebanada de delicioso pay de chocolate. 400 grms. Postre individual.",
+    "imagen": "/assets/visor/4.jpg"
+  },
+  {
+    "modelo": "Flan Napolitano Mediano",
+    "costo": "$450.00 MXN",
+    "descripcion": "8 Rebanadas de Flan Napolitano. 2.8 kg",
+    "imagen": "/assets/visor/5.jpg"
+  },
+  {
+    "modelo": "Pastel de Chocolate Mediano",
+    "costo": "$410.00 MXN",
+    "descripcion": "Delicioso pastel de chocolate con mil variedades de chocolate dentro.",
+    "imagen": "/assets/visor/6.jpg"
   }
 ]

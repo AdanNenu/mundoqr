@@ -1,0 +1,23 @@
+.contenedor-video {
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.vertical .video {
+  height: auto;
+}
+
+.horizontal .video {
+  height: auto;
+}
+

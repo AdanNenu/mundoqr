@@ -89,6 +89,15 @@
     max-width: 50%;
     padding-left: 5rem;
   }
+  
+  .descripcion {
+  width: 30rem; /* 👈 Altura FIJA */
+  height: 10rem; /* 👈 Altura FIJA */
+  overflow-y: auto; /* 👈 Agrega scroll si el texto se pasa */
+  overflow-x: hidden; /* 👈 Evita scroll horizontal */
+  padding: 0.5rem;
+  box-sizing: border-box;
+ }
 }
 
 /* Modifica botones del visor Landscape */
@@ -110,4 +119,34 @@
     max-width: 50%;
     padding-left: 1rem;
   }
+  
+  .descripcion {
+  width: 17rem; /* 👈 Altura FIJA */
+  height: 10rem; /* 👈 Altura FIJA */
+  overflow-y: auto; /* 👈 Agrega scroll si el texto se pasa */
+  overflow-x: hidden; /* 👈 Evita scroll horizontal */
+  padding: 0.5rem;
+  box-sizing: border-box;
+ }
 }
+
+/* 📱 Media query para orientación vertical (portrait) */
+@media screen and (orientation: portrait) {
+  .visor-imagen {
+    width: 95vw;        /* ✅ Ocupa el 95% del ancho disponible */
+    height: auto;       /* ✅ Altura automática según la imagen */
+    max-height: 95vh;   /* ✅ No se pasa del alto visible si es muy larga */
+    max-width: none;    /* ❗ Elimina el límite de 400px si lo deseas */
+    aspect-ratio: auto; /* ❗ Por si quieres que se adapte libremente */
+  }
+  
+  .descripcion {
+  height: 8.1rem; /* 👈 Altura FIJA */
+  overflow-y: auto; /* 👈 Agrega scroll si el texto se pasa */
+  overflow-x: hidden; /* 👈 Evita scroll horizontal */
+  padding: 0.2rem;
+  box-sizing: border-box;
+}
+}
+
+
